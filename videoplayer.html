@@ -1,4 +1,5 @@
-<body style="margin: 0px; background: #0e0e0e; height: 100%"><video controls="" src="VideoPath" style="
+
+<body style="margin: 0px; background: #0e0e0e; height: 100%"><video controls="" src= style="
     filter: saturate(1.5) hue-rotate(10deg);
     /* transform: rotate(45deg); */
     position: absolute;
@@ -44,3 +45,8 @@
     left: 0;
     margin: auto;
 "></video></body>
+
+<script>
+    path = 'yourVideoPath.mp4';
+    document.querySelectorAll('video').forEach(el => {el.src = path})
+</script>
