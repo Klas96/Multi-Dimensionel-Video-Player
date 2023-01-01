@@ -22,8 +22,10 @@
         </style>
     </head>
     <body>
-        <input type="file" id="upload" class="hide">
-        <button onclick="openFile()">Choose Video File</button>
+        <input type="file" id="upload" class="hide" oninput="readFile(event)">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <button onclick="openFile()">Choose Video File</button>
+        </div>          
         <video class="hide" style="filter: saturate(1.5) hue-rotate(10deg); bottom: 0;"></video>
         <video class="hide" style="filter: saturate(150) invert();"></video>
         <video class="hide" style="filter: saturate(0); right: 0; top: 0;"></video>
@@ -44,16 +46,18 @@
             }
 
             
-
             function readFile(e) {
                 var file = e.target.files[0];
-                alert(file);
+                console.log(file.name);
                 if (!file) return;
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('contents').innerHTML = e.target.result;
                 }
                 reader.readAsText(file)
+                document.querySelectorAll('video').forEach(el => {
+                    el.src = URL.createObjectURL(file);
+                });
             }
         </script>
     </body>
