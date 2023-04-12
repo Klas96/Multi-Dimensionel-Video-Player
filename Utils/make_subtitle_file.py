@@ -1,10 +1,26 @@
 import ffmpeg
 
-video_file = '/path/to/video/file.mp4'
-subtitle_file = '/path/to/subtitle/file.srt'
+def extract_subtitle_stream(video_file_path, output_sub_path):
 
-# Extract the first subtitle stream from the video file
-stream = ffmpeg.input(video_file).output('dummy', map='0:s:0').global_args('-c:s', 'srt').compile()
+    # Extract the first subtitle stream from the video file
+    input_stream = ffmpeg.input(video_file_path)
+    output_stream = ffmpeg.output(input_stream['s:0'], output_sub_path, codec='srt', f='srt')
 
-# Save the subtitle stream to a separate file
-ffmpeg.run(stream, overwrite_output=True, output_filename=subtitle_file)
+    # Save the subtitle stream to a separate file
+    ffmpeg.run(output_stream, overwrite_output=True)
+
+
+def extract_subtitle_stream(video_file_path, output_sub_path):
+
+    # Extract the first subtitle stream from the video file
+    input_stream = ffmpeg.input(video_file_path)
+    output_stream = ffmpeg.output(input_stream['s:0'], output_sub_path, codec='srt', f='srt')
+
+    # Save the subtitle stream to a separate file
+    ffmpeg.run(output_stream, overwrite_output=True)
+
+
+if __name__ == '__main__':
+    video_path = 'videos/The.Square.2017.1080p.BrRip.6CH.sample.mkv'
+    sub_path = 'Subtitles/squere.str'
+    extract_subtitle_stream(video_path, sub_path)
