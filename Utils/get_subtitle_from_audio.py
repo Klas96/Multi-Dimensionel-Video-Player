@@ -1,6 +1,6 @@
 from google.cloud import speech_v1
 
-def generate_subtitels(audio_file = '/path/to/audio/file'):
+def get_subtitle_from_audio(audio_file = '/path/to/audio/file'):
     # Set up the speech-to-text client
     client = speech_v1.SpeechClient()
 

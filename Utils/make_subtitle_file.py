@@ -1,6 +1,6 @@
 import ffmpeg
 
-def extract_subtitle_stream(video_file_path, output_sub_path):
+def extract_audio_stream(video_file_path, output_sub_path):
 
     # Extract the first subtitle stream from the video file
     input_stream = ffmpeg.input(video_file_path)

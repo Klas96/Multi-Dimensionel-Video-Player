@@ -1,6 +1,6 @@
 from moviepy.editor import VideoFileClip
 
-def make_audio_file():
+def make_audio_file(video_file, audio_file):
     # Set up the video file path
     video_file = 'videos/file'
 
