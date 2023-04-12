@@ -8,14 +8,14 @@
                 height: 100%;
                 margin: 0px; 
             }
-
+            
             video {
                 height: 50%;
                 object-fit: cover;
                 position: absolute;
-                width: 50%;
-             }
-
+                width: 50%; 
+            }
+            
             .hide {
                 display: none;
             }
@@ -25,39 +25,32 @@
         <input type="file" id="upload" class="hide" oninput="readFile(event)">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <button onclick="openFile()">Choose Video File</button>
-        </div>          
-        <video class="hide" style="filter: saturate(1.5) hue-rotate(10deg); bottom: 0;"></video>
-        <video class="hide" style="filter: saturate(150) invert();"></video>
-        <video class="hide" style="filter: saturate(0); right: 0; top: 0;"></video>
-        <video class="hide" style="right: 0; bottom: 0;"></video>
-        <video class="hide" style="right: 0; bottom: 0; width: 75%; height: 75%; top: 0; left: 0; margin: auto;"></video>
+        </div>
+
+        <video class="hide video" style="right: 0; bottom: 0; width: 75%; height: 75%; top: 0; left: 0; margin: auto;"></video>
     
         <script>
             
             function openFile() {
                 document.getElementById('upload').click();
-                //alert(document.getElementById('upload').value);
                 document.querySelector('button').classList.add('hide');
                 document.querySelectorAll('video').forEach(el => {
                     el.setAttribute('controls', '🚀🚀🚀🚀🚀🚀🚀');
-                    //el.src = path;
                     el.classList.remove('hide');
                 });
             }
 
-            
             function readFile(e) {
                 var file = e.target.files[0];
                 console.log(file.name);
                 if (!file) return;
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('contents').innerHTML = e.target.result;
+                    document.querySelectorAll('video').forEach(el => {
+                        el.src = e.target.result;
+                    });
                 }
-                reader.readAsText(file)
-                document.querySelectorAll('video').forEach(el => {
-                    el.src = URL.createObjectURL(file);
-                });
+                reader.readAsDataURL(file)
             }
         </script>
     </body>
