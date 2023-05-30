@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contrast Control</title>
+  <title>Video Effects Control</title>
   <style>
-    #contrast-input {
+    #video-container {
+      position: relative;
+    }
+
+    #video {
+      filter: contrast(100%) grayscale(0) hue-rotate(0deg);
+      transition: filter 0.3s ease;
+    }
+
+    #controls {
       width: 80%;
       margin: 20px auto;
     }
   </style>
 </head>
 <body>
-  <video id="video" controls>
-    <source src="PathToFile" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <div id="contrast-input">
-    <p>Contrast</p>
-    <input type="number" id="contrast-value" min="0" max="1000" value="50">
-    <button id="apply-contrast">Apply</button>
+  <div id="video-container">
+    <video id="video" controls>
+      <source src="path_to_video_file.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const video = document.getElementById('video');
-        const contrastValueInput = document.getElementById('contrast-value');
-        const applyContrastButton = document.getElementById('apply-contrast');
+  <div id="controls">
+    <label for="contrast-range">Contrast:</label>
+    <input type="range" id="contrast-range" min="0" max="200" value="100">
 
-        applyContrastButton.addEventListener('click', () => {
-            const contrastValue = contrastValueInput.value;
-            video.style.filter = `contrast(${contrastValue}%)`;
-        });
-    });
-  </script>
+    <label for="grayscale-range">Grayscale:</label>
+    <input type="range" id="grayscale-range" min="0" max="100" value="0">
+
+    <label for="hue-rotate-range">Hue Rotation:</label>
+    <input type="range" id="hue-rotate-range" min="0" max="360" value="0">
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
