@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contrast Control</title>
+  <style>
+    #contrast-input {
+      width: 80%;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <video id="video" controls>
+    <source src="/home/klas/Videos/Cocaine_Bear/Cocaine.Bear.2023.1080p.WEBRip.x264.AAC5.1-[YTS.MX].mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="contrast-input">
+    <p>Contrast</p>
+    <input type="number" id="contrast-value" min="0" max="1000" value="50">
+    <button id="apply-contrast">Apply</button>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('video');
+        const contrastValueInput = document.getElementById('contrast-value');
+        const applyContrastButton = document.getElementById('apply-contrast');
+
+        applyContrastButton.addEventListener('click', () => {
+            const contrastValue = contrastValueInput.value;
+            video.style.filter = `contrast(${contrastValue}%)`;
+        });
+    });
+  </script>
+</body>
+</html>
